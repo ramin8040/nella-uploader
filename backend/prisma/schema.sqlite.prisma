@@ -1,0 +1,53 @@
+// Prisma Schema for Music Streaming Center (Local SQLite Dev Fallback)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Admin {
+  id        String   @id @default(uuid())
+  username  String   @unique
+  password  String
+  name      String   @default("مدیر سیستم")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Music {
+  id         String   @id
+  slug       String   @unique
+  title      String
+  artist     String
+  album      String?
+  duration   Float
+  bitrate    Int?
+  fileSize   Int
+  mimeType   String   @default("audio/mpeg")
+  storageKey String   @default("")
+  directUrl  String?
+  playCount  Int      @default(0)
+  likeCount  Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([slug])
+  @@index([createdAt])
+}
+
+model Settings {
+  id             String   @id @default("singleton")
+  brandName      String   @default("Music Center")
+  brandLogoUrl   String   @default("/assets/logo.svg")
+  primaryColor   String   @default("#ff6b35")
+  secondaryColor String   @default("#ff8c42")
+  instagramUrl   String?  @default("https://instagram.com")
+  telegramUrl    String?  @default("https://t.me")
+  phoneNumber    String?  @default("+989120000000")
+  websiteUrl     String?  @default("https://example.com")
+  updatedAt      DateTime @updatedAt
+}

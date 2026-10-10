@@ -1,0 +1,19 @@
+{
+  "name": "music-streaming-center",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Music Streaming Center - Modern Persian RTL Music Streaming Platform with Single Admin and Glassmorphic Player",
+  "scripts": {
+    "dev:backend": "npm --prefix backend run start:dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "build:backend": "npm --prefix backend run build",
+    "build:frontend": "npm --prefix frontend run build",
+    "build": "npm run build:backend && npm run build:frontend",
+    "prisma:generate": "npm --prefix backend run prisma:generate",
+    "prisma:seed": "npm --prefix backend run prisma:seed"
+  },
+  "keywords": ["music", "streaming", "nestjs", "nextjs", "rtl", "persian", "wavesurfer"],
+  "author": "",
+  "license": "UNLICENSED"
+}
